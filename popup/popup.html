@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="popup.js" type="module"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <img src="../icon.png" height="64px" width="64px" style="vertical-align:middle;">
+            <span style="font-size:32px; vertical-align:middle; margin-left: 10px;">PowerKeys</span>
+        </div>
+        <div>
+            <div class="control">
+                <h2>Hide Items
+                    <hr>
+                </h2>
+                <p>
+                    <input type="checkbox" id="out-of-stock" name="out-of-stock">
+                    <label for="out-of-stock">Hide Out of stock</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="preorder" name="preorder">
+                    <label for="preorder">Hide Preorder</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="front-page" name="front-page">
+                    <label for="front-page">Apply options on front page</label>
+                </p>
+            </div>
+
+            <div class="control">
+                <h2>Sort Items
+                    <hr>
+                </h2>
+
+                <p>
+                    <input type="checkbox" id="enable-sort" name="enable-sort">
+                    <label for="enable-sort">Enable sort</label>
+                </p>
+                <p>
+                <fieldset>
+                    <legend>Sort options</legend>
+                    <p>
+                        <label class="input-label" for="sort-by">Sort by</label>
+                        <select id="sort-by" name="sort-by">
+                            <option value="price">Price</option>
+                            <option value="name">Name</option>
+                            <option value="rating">Rating</option>
+                        </select>
+                    </p>
+
+                    <p>
+                        <label class="input-label" for="sort-order">Order</label>
+                        <select id="sort-order" name="sort-order">
+                            <option value="ascending">Ascending</option>
+                            <option value="descending">Descending</option>
+                        </select>
+                    </p>
+                </fieldset>
+                </p>
+            </div>
+
+            <div class="control">
+                <h2>
+                    Visuals
+                    <hr>
+                </h2>
+                <p>
+                    <input type="checkbox" id="dark-mode" name="dark-mode">
+                    <label for="dark-mode">Dark mode</label>
+                </p>
+                <p>
+                    <input type="checkbox" id="enable-border" name="enable-border">
+                    <label for="enable-border">Enable border for images</label>
+                </p>
+                <p>
+                <fieldset>
+                    <legend>Border Settings</legend>
+
+                    <p>
+                        <label class="input-label" for="border-style">Style</label>
+                        <select id="border-style" name="border-style">
+                            <option value="dotted">Dotted</option>
+                            <option value="dashed">Dashed</option>
+                            <option value="solid">Solid</option>
+                            <option value="double">Double</option>
+                            <option value="groove">Groove</option>
+                            <option value="ridge">Ridge</option>
+                            <option value="inset">Inset</option>
+                            <option value="outset">Outsed</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label class="input-label" for="border-width">Width</label>
+                        <input id="border-width" name="border-width" type="number" placeholder="4" min="1"
+                            style="width: 5em;">
+                    </p>
+                    <p>
+                        <!--
+                            if you're wondering why i'm not just using the HTML5 color picker element,
+                            a bug in Firefox is preventing it (among other elements that use native modals)
+                            to be used in extension popups: https://bugzilla.mozilla.org/show_bug.cgi?id=1292701
+                        -->
+                        <label class="input-label" for="border-color">Color</label>
+                        <select id="border-color" name="border-color">
+                            <option value="red">Red</option>
+                            <option value="orange">Orange</option>
+                            <option value="yellow">Yellow</option>
+                            <option value="green">Green</option>
+                            <option value="blue">Blue</option>
+                            <option value="indigo">Indigo</option>
+                            <option value="violet">Violet</option>
+                            <option value="pink">Pink</option>
+                            <option value="purple">Purple</option>
+                            <option value="turquoise">Turquoise</option>
+                            <option value="gold">Gold</option>
+                            <option value="lime">Lime</option>
+                            <option value="maroon">Maroon</option>
+                            <option value="navy">Navy</option>
+                            <option value="coral">Coral</option>
+                            <option value="teal">Teal</option>
+                            <option value="brown">Brown</option>
+                            <option value="white">White</option>
+                            <option value="black">Black</option>
+                            <option value="gray">Gray</option>
+                            <option value="silver">Silver</option>
+                        </select>
+                    </p>
+                </fieldset>
+                </p>
+            </div>
+
+            <div class="control">
+                <h2>
+                    Currency Conversion
+                    <hr>
+                </h2>
+
+                <p>
+                    <input type="checkbox" id="enable-conversion" name="enable-conversion">
+                    <label for="enable-conversion">Enable Conversion</label>
+                </p>
+                <p>
+                <fieldset>
+                    <legend>Conversion Settings</legend>
+                    <p>
+                        <label for="currency">Currency</label>
+                        <select id="currency" name="currency" disabled="true">
+                            <template id="currency-template">
+                                <option value=""></option>
+                            </template>
+                        </select>
+                    </p>
+                    <p>
+                        <b id="exchange-rate"></b>
+                        Rates displayed are the current exchange rates.<br>
+                        They're refreshed whenever the page is changed or when it reloads.<br><br>
+                        <b>The prices displayed may not be what you will be charged.</b><br>
+                        Additional costs may be caused by your bank or the payment provider.
+                    </p>
+                </fieldset>
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <hr>
+            <h4>Add-on developed by kyu.<br>Inspired by the code Rucola posted.<br>
+                <a href="https://forms.gle/fzissAsEWoGiZ57F8" target="_blank">Feedback</a> |
+                <a href="https://github.com/kyunal/PowerKeys" target="_blank">GitHub</a> | <a
+                    href="https://discord.gg/8DUgfzyxe4" target="_blank">CandyKeys Discord</a>
+            </h4>
+            <h5>Disclaimer:<br>
+                This add-on is in not directly afiliated with <a href="https://candykeys.com">candykeys.com</a>.<br>
+                The author takes no responsibility in case this software misfunctions or causes misfunctions.
+            </h5>
+        </div>
+    </div>
+</body>
+
+</html>

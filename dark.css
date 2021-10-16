@@ -1,0 +1,63 @@
+/*
+    this was kindly stolen from here: https://dev.to/louislow/comment/1414k
+    although i'm uncertain whether or not this is the origin of this code
+    as i've seen it plenty of times before
+*/
+html {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+img:not(.featured *), picture, video, iframe, .featured, .bg, .tag, .container > .newsletter, .footer > .copy,
+.img.glightbox,
+#glightbox-body {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/*
+    this looks (and is) rather hacky but it just cheaply disables the filter on
+    any fullscreen picture
+*/
+#glightbox-slider * img, image, video, picture, iframe {
+    filter: none;
+}
+
+/*
+    this fixes a bunch of stuff only broken on firefox,
+    the background-color is necessary because firefox does not apply the invert filter on
+    white backgrounds and also hasn't yet implemented backdrop-filter
+
+    the other things prevent that the filter are used when the full screen view of an element is active,
+    this causes position:fixed to work differently and moves the fullscreen view in a strange area
+    in addition, the color overlay is permanently set to black to avoid eye-bleach when the animation
+    plays while dark mode isn't yet applied again
+*/
+@-moz-document url-prefix() {
+    html {
+       background-color: black;
+    }
+
+    html.glightbox-open {
+        filter: none;
+    }
+
+    #glightbox-body .goverlay {
+        background: white;
+        opacity: 100% !important;
+    }
+
+    :matches(html.glightbox-open) img:not(.featured *), picture, video, iframe, .featured, .bg, .tag, .container > .newsletter, .footer > .copy {
+        filter: none;
+    }
+
+    #glightbox-body * button.gbtn {
+        filter: invert(1) hue-rotate(180deg);
+    }
+
+    #glightbox-slider * img, image, video, picture, iframe {
+        filter: invert(1) hue-rotate(180deg) !important;
+    }
+
+    #glightbox-slider * div.gslide-media {
+        box-shadow: none;
+    }
+}

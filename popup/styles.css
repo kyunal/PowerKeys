@@ -1,0 +1,47 @@
+/*
+i'm admittingly not very savvy of html + css so bear with me :)
+*/
+
+body {
+    width: 320px;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 300px;
+    margin-left: 10px;
+}
+
+@-moz-document url-prefix() {
+    .container {
+       margin-left: 0;
+    }
+
+    html {
+        font-size: 12px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+ }
+
+.footer {
+    text-align: right;
+    margin-top: 3.0rem;
+}
+
+.control + .control:not(:first-child) {
+    margin-top: 2.0rem;
+}
+
+.input-label {
+    display: inline-block;
+    width: 100px;
+    text-align: left;
+}
+
+label > fieldset {
+    margin-bottom: 1rem;
+}

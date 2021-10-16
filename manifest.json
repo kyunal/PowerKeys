@@ -1,0 +1,33 @@
+{
+    "name": "PowerKeys",
+    "version": "1.0",
+    "manifest_version": 2,
+    "description": "Advanced tools for candykeys.com!",
+    "permissions": [
+        "storage",
+        "*://candykeys.com/*",
+        "https://api.coinbase.com/"
+    ],
+    "background": {
+        "scripts": [
+            "install.js"
+        ]
+    },
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup/popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://candykeys.com/*"
+            ],
+            "js": [
+                "powerkeys.js"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        "dark.css"
+    ]
+}
