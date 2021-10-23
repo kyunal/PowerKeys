@@ -30,6 +30,8 @@ img:not(.featured *), picture, video, iframe, .featured, .bg, .tag, .container >
     this causes position:fixed to work differently and moves the fullscreen view in a strange area
     in addition, the color overlay is permanently set to black to avoid eye-bleach when the animation
     plays while dark mode isn't yet applied again
+
+    similar issue with the search bar, the workaround below isn't beautiful but it works well enough
 */
 @-moz-document url-prefix() {
     html {
@@ -59,5 +61,16 @@ img:not(.featured *), picture, video, iframe, .featured, .bg, .tag, .container >
 
     #glightbox-slider * div.gslide-media {
         box-shadow: none;
+    }
+
+    #app > div.search {
+        display: none;
+        position: sticky;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #app > div.search.active {
+        display: grid !important;
     }
 }
