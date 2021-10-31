@@ -24,6 +24,13 @@ var checkoutWarning = undefined;
 // the regex used to identify € prices within the page
 const priceRegex = /\d+,\d{2}\s€/gm;
 
+// selectors used for finding product lists for sorting (e.g. categories, search, ..)
+const sortSelectors = [
+    ".products",
+    "#app > div.wrap > section.catalog > div.container > div.columns",
+    "#app > div.wrap > section.cart > div.container > div.columns"
+];
+
 // apply the user's choices whenever they load up candykeys.com
 apply();
 
@@ -133,14 +140,18 @@ function apply() {
 }
 
 function sortElements(property, order) {
-    // this is a quick and dirty hack for products which are not wrapped in the products container
-    // TODO: improve this
-    let items = document.querySelector(".products");
-    if (!items) {
-        items = document.querySelector("#app > div.wrap > section.catalog > div.container > div.columns");
-        if (!items) {
-            return;
+    // unfortunately, products are often not wrapped in the same type of container making them hard to find
+    // thus we test for a few of them and if no fitting one is found, this method is simply aborted
+    let items = undefined;
+    for (const selector of sortSelectors) {
+        items = document.querySelector(selector);
+        if (items) {
+            break;
         }
+    }
+
+    if (!items) {
+        return;
     }
 
     // anything without a price tag may just be an empty or invisible element
