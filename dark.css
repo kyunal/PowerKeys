@@ -9,7 +9,8 @@ html {
 
 img:not(.featured *), picture, video, iframe, .featured, .bg, .tag, .container > .newsletter, .footer > .copy,
 .img.glightbox,
-#glightbox-body {
+#glightbox-body,
+#app > div.search {
     filter: invert(1) hue-rotate(180deg);
 }
 
