@@ -92,8 +92,8 @@ function apply() {
             // this seemingly overcomplicated if is necessary because we do not want to
             // unnecessarily set href anew because it might trigger the browser to refresh the css
             // disturbing the dark mode experience
-            if (storage.darkMode && darkCSS.href != chrome.extension.getURL("dark.css")) {
-                darkCSS.href = chrome.extension.getURL("dark.css");
+            if (storage.darkMode && darkCSS.href != chrome.runtime.getURL("dark.css")) {
+                darkCSS.href = chrome.runtime.getURL("dark.css");
             } else if (!storage.darkMode && darkCSS.href != "") {
                 darkCSS.href = "";
             }
