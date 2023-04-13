@@ -1,3 +1,14 @@
+const siteIsCompatible = document.querySelector('meta[name="author"]') !== null;
+if(!siteIsCompatible) {
+    chrome.storage.local.get('compatibilityAlert', (val) => {
+        if(!val || Object.keys(val).length === 0) {
+            chrome.storage.local.set({'compatibilityAlert': true})
+            alert('PowerKeys has been disabled with the adoption of the new CandyKeys website.\nThank you for being a user of this addon. You may safely uninstall it now.\n\nSincerely, kyu.')
+        }
+    })
+    throw new Error('The PowerKeys addon has disabled itself')
+}
+
 // storage for the node that injects the dark.css into the site
 var darkCSS = document.createElement("link");
 darkCSS.rel = "stylesheet";
